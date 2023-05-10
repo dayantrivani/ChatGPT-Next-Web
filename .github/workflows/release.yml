@@ -22,3 +22,6 @@ jobs:
       -
         name: Release
         uses: softprops/action-gh-release@v1
+        with:
+          body: |
+            [README](https://github.com/dayantrivani/ChatGPT-Next-Web/blob/release/README.md)
