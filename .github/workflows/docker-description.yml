@@ -1,0 +1,27 @@
+name: 'Docker Publish Description'
+
+on:
+  push:
+    branches:
+      - release
+    paths:
+      - README.md
+      - .github/workflows/docker-description.yml
+
+jobs:
+  sync:
+    name: Docker README.md Sync
+
+    runs-on: ubuntu-latest
+
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: DockerHub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: '${{ secrets.DOCKERHUB_USERNAME }}/chatgpt-next-web'
