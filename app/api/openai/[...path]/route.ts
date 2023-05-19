@@ -8,7 +8,7 @@ async function handle(
   { params }: { params: { path: string[] } },
 ) {
   console.log("[OpenAI Route] params ", params);
-  console.log("[Request] ", req);
+  console.log("[Request] ", req.body);
 
   const authResult = auth(req);
   if (authResult.error) {
