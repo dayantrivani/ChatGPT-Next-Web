@@ -8,7 +8,7 @@ async function handle(
   { params }: { params: { path: string[] } },
 ) {
   console.log("[OpenAI Route] params ", params);
-  console.log("[Request] ", req.body);
+  console.log("[Request] ", JSON.stringify(req.body, null, 2));
 
   const authResult = auth(req);
   if (authResult.error) {
@@ -19,7 +19,7 @@ async function handle(
 
   try {
     const response = await requestOpenai(req);
-    console.log("[Response] ", response);
+    console.log("[Response] ", JSON.stringify(response.body, null, 2));
     return response;
   } catch (e) {
     console.error("[OpenAI] ", e);
