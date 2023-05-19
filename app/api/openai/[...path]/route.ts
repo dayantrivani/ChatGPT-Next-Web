@@ -23,6 +23,7 @@ async function handle(
 
   try {
     const response = await requestOpenai(req);
+    console.log("[Response] ", response.json);
     return response;
   } catch (e) {
     console.error("[OpenAI] ", e);
