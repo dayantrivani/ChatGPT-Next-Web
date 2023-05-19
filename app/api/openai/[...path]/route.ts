@@ -22,9 +22,7 @@ async function handle(
   }
 
   try {
-    const response = await requestOpenai(req);
-    console.log("[Response] ", response.json());
-    return response;
+    return await requestOpenai(req);
   } catch (e) {
     console.error("[OpenAI] ", e);
     return NextResponse.json(prettyObject(e));
