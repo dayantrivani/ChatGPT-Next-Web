@@ -19,7 +19,9 @@ async function handle(
 
   try {
     const response = await requestOpenai(req);
-    console.log("[Response] ", JSON.stringify(response.body, null, 2));
+    if (response) {
+      console.log("[Response] ", JSON.stringify(response.body, null, 2));
+    }
     return response;
   } catch (e) {
     console.error("[OpenAI] ", e);
