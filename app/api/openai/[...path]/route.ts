@@ -10,7 +10,7 @@ async function handle(
   console.log("[OpenAI Route] params ", params);
   let body;
   if (req.body) {
-    body = await req.body.json();
+    body = await req.json();
   }
   console.log("[Request] ", body);
 
