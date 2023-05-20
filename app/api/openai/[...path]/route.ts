@@ -8,8 +8,14 @@ async function handle(
   { params }: { params: { path: string[] } },
 ) {
   console.log("[OpenAI Route] params ", params);
+  const [reqA, reqB] = req.tee();
+  let reqBody;
+  if (reqA.body) {
+    reqBody = await reqA.json();
+  }  
+  console.log("[reqBody] \n", JSON.stringify(reqBody, null, 2));
 
-  const authResult = auth(req);
+  const authResult = auth(reqB);
   if (authResult.error) {
     return NextResponse.json(authResult, {
       status: 401,
