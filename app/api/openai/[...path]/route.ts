@@ -23,7 +23,13 @@ async function handle(
   }
 
   try {
-    return await requestOpenai(req);
+    const response = await requestOpenai(req);
+    let resBody;
+    if (response) {
+      resBody = await response.clone().json();
+    }
+    console.log("[resBody] \n", JSON.stringify(resBody, null, 2));
+    return response;
   } catch (e) {
     console.error("[OpenAI] ", e);
     return NextResponse.json(prettyObject(e));
