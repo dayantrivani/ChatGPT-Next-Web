@@ -31,6 +31,7 @@ export async function requestOpenai(req: NextRequest) {
   }, 10 * 60 * 1000);
 
   try {
+    console.log("[Request] \n", req.body);
     return await fetch(`${baseUrl}/${openaiPath}`, {
       headers: {
         "Content-Type": "application/json",
