@@ -26,9 +26,9 @@ async function handle(
     const response = await requestOpenai(req);
     let resBody;
     if (response) {
-      resBody = await response.clone().json();
+      resBody = await response.clone().text();
     }
-    console.log("[resBody] \n", JSON.stringify(resBody, null, 2));
+    console.log("[resBody] \n", resBody);
     return response;
   } catch (e) {
     console.error("[OpenAI] ", e);
