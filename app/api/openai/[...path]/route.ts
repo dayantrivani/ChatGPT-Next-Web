@@ -28,7 +28,10 @@ async function handle(
     if (response) {
       resBody = await response.clone().text();
     }
-    console.log("[resBody] \n", resBody);
+    await Promise.all([
+      console.log("[resBody] \n", resBody),
+      response
+    ]);
     return response;
   } catch (e) {
     console.error("[OpenAI] ", e);
