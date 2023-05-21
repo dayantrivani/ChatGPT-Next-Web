@@ -24,20 +24,20 @@ async function handle(
 
   try {
     const response = await requestOpenai(req);
-    let resBody;
-    if (response) {
-      resBody = await response.clone().text();
-    }
-    await Promise.all([
-      console.log("[resBody] \n", resBody),
-      response,
-    ]);
+    return Promise.all([logResponse(response), response]);
   } catch (e) {
     console.error("[OpenAI] ", e);
     return NextResponse.json(prettyObject(e));
   }
 }
 
+async function logResponse(response: any) {
+  let resBody;
+  if (response) {
+    resBody = await response.clone().text();
+  }
+  console.log("[resBody] \n", resBody);
+}
 export const GET = handle;
 export const POST = handle;
 
