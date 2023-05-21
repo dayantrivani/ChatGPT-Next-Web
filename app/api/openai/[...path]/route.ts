@@ -30,9 +30,8 @@ async function handle(
     }
     await Promise.all([
       console.log("[resBody] \n", resBody),
-      response
+      response,
     ]);
-    return response;
   } catch (e) {
     console.error("[OpenAI] ", e);
     return NextResponse.json(prettyObject(e));
