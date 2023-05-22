@@ -9,6 +9,11 @@ async function handle(
 ) {
   console.log("[OpenAI Route] params ", params);
 
+  // log Request content
+  req.clone().json().then((reqBody: any) => {
+    console.log("[reqBody]\n", JSON.stringify(reqBody));
+  });
+
   const authResult = auth(req);
   if (authResult.error) {
     return NextResponse.json(authResult, {
